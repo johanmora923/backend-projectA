@@ -11,7 +11,7 @@ app.listen(app.get("port"))
 console.log("Server on port", app.get("port"));
 
 const corsOptions = {
-    origin: 'http://localhost:5173/',
+    origin: 'http://localhost:5173',
     optionsSuccessStatus: 200
 }
 
@@ -21,4 +21,5 @@ app.use(express.static(__dirname + '/pages'));
 console.log(__dirname)
 
 
-app.get('/', (req, res) => { res.sendFile(__dirname + 'index.html'); });
+
+app.post('/', handleLogin)
