@@ -3,6 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import cors from 'cors';
+import { handleLogin } from './routes/login.js';
+
 
 
 const app = express();
@@ -17,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.static(__dirname + '/pages'));
+app.use(express.static(path.join(__dirname + '/pages')));
 console.log(__dirname)
 
 
