@@ -6,7 +6,7 @@
   "devDependencies": {},
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec node app/index.js"
+    "dev": "nodemon --exec node app/public/index.js"
   },
   "keywords": [],
   "author": "",
