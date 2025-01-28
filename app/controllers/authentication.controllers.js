@@ -1,6 +1,6 @@
 import createPool from 'mysql2/promise';
 
-const pool = createPool.createPool({
+const pool = createPool({
     host: 'bwvxcku5txdwk7meiayz-mysql.services.clever-cloud.com',
     user: 'u1xrecofby3ual5y',
     password: 'ZgoqH9tZgXX1XfZroUUj',
