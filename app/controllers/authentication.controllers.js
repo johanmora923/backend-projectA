@@ -1,5 +1,11 @@
 import { createPool } from 'mysql2/promise';
 import bcryptjs from 'bcryptjs';
+import Jsonwebtoken from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+
+
+dotenv.config();
 
 let pool;
 try {
@@ -28,8 +34,23 @@ async function handleLogin( req, res ) {
                 console.log('problema de inicio de sesion');
                 return res.status(401).send('User or password are incorrect');
             }
+            const loginSuccessful = await bcryptjs.compare(password,userDB.password);
+            if (!loginSuccessful) {
+                console.log('problema de inicio de sesion');
+                return res.status(401).send('User or password are incorrect');
+            }
+            const token = Jsonwebtoken.sign(
+                {user: userDB.name},
+                process.env.JWT__SECRET,
+                {expiresIn:process.env.JWT__EXPIRATION}
+            )
+            const cookieOption = {
+                expired: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
+                path: "/"
+            }
             console.log('inicio de sesion exitoso');
-            return res.status(200).send('Login successful');
+            res.cookie('jwt',token,cookieOption);
+            return res.status(200).send({status:"ok",message:`Bienvenido ${userDB.name}`});
         }
     }
     catch(error){
