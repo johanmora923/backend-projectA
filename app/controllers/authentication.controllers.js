@@ -17,6 +17,6 @@ async function handleLogin(req, res) {
     return res.status(200).send('Login successful');
 }
 
-export const methods = {
+export const METHODS = {
     handleLogin
 }
