@@ -6,17 +6,17 @@ import cookieParser from "cookie-parser";
 dotenv.config()
 
 
-function onlyAdmin(req, res, next) {
+async function onlyAdmin(req, res, next) {
     console.log(req.headers.cookie);
-    const user = revisarCookie(req);
+    const user =await  revisarCookie(req);
     if (user && user.logueado) {
         return next();
     }
     return res.redirect('/');
 }
 
-function onlyPublic(req, res, next) {
-    const user = revisarCookie(req);
+async function onlyPublic(req, res, next) {
+    const user = await revisarCookie(req);
     if (user && user.logueado) {
         return res.redirect('/account'); // Redirige a una página específica si el usuario ya está logueado
     }
@@ -24,22 +24,33 @@ function onlyPublic(req, res, next) {
 }
 
 async function revisarCookie(req){
-    const [users] = await pool.query('SELECT name,password FROM users');
-    try{
-        const cookieJWT = req.headers.cookie.split("; ").find(cookie=> cookie.startsWith("jwt=")).slice(4);
-        const decodificada = Jsonwebtoken.verify(cookieJWT,process.env.JWT__SECRET)
-        console.log("cod",cookieJWT);
-        for(const user of users){
-            if(user.name !== decodificada.user){
-                console.log(user.name)
-                return false
-            }return true
-    }
-    }   
-    catch{
-        console.log("no llego la cookie")
-        return false;
-        
+    try {
+        const cookieHeader = req.headers.cookie;
+        if (!cookieHeader) {
+            console.log("No hay cookies en la solicitud");
+            return null;
+        }
+
+        const cookieJWT = cookieHeader.split("; ").find(cookie => cookie.startsWith("jwt="));
+        if (!cookieJWT) {
+            console.log("No se encontró la cookie JWT");
+            return null;
+        }
+
+        const token = cookieJWT.slice(4);
+        const decodificada = Jsonwebtoken.verify(token, process.env.JWT__SECRET);
+        console.log("Token decodificado:", decodificada);
+
+        const [users] = await pool.query('SELECT name FROM users WHERE name = ?', [decodificada.user]);
+        if (users.length === 0) {
+            console.log("Usuario no encontrado en la base de datos");
+            return null;
+        }
+
+        return { logueado: true };
+    } catch (error) {
+        console.log("Error al revisar la cookie:", error);
+        return null;
     }
 }
 
