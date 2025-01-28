@@ -1,5 +1,6 @@
 
-export function handleLogin(req, res) {
+
+async function handleLogin(req, res) {
     const { user, password } = req.body;
     const users = {
         'user':johan,
@@ -14,4 +15,8 @@ export function handleLogin(req, res) {
     }
     console.log('inicio de sesion exitoso');
     return res.status(200).send('Login successful');
+}
+
+export const methods = {
+    handleLogin
 }
