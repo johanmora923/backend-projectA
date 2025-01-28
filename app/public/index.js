@@ -24,3 +24,4 @@ console.log(__dirname)
 
 
 app.post('/login', autenticación.handleLogin);
+app.post('/register', autenticación.handleRegister);
