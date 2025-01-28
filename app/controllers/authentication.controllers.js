@@ -22,6 +22,10 @@ try {
     console.log('Error en la conexion a la base de datos', error);
 }
 
+export {
+    pool
+}
+
 async function handleLogin( req, res ) {
     const { user, password } = req.body;
     if (!user || !password) {
