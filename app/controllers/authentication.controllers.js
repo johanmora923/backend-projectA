@@ -35,10 +35,14 @@ async function handleLogin( req, res ) {
         const [ users ] = await pool.query('SELECT name,password FROM users WHERE name = ?', [user]);
         for (let userDB of users) {
             console.log(userDB);
+            if (user !== userDB.name) {
+                console.log('problema de inicio de sesion');
+                return res.status(401).send('incorect credentials');
+            }
             const loginSuccessful = await bcryptjs.compare(password, userDB.password);
             if (!loginSuccessful) {
-                console.log('problema de inicio de sesion');
-                return res.status(401).send('User or password are incorrect');
+                console.log('problema de inicio de sesion2');
+                return res.status(401).send('incorect credentials');
             }
             const token = Jsonwebtoken.sign(
                 {user: userDB.name},
