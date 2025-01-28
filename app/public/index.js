@@ -24,4 +24,4 @@ console.log(__dirname)
 
 
 
-app.post('/', handleLogin)
+app.post('/login', handleLogin(req, res));
