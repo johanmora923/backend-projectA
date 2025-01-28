@@ -4,7 +4,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import cors from 'cors';
 import { METHODS as autenticación } from '../controllers/authentication.controllers.js';
+import { METHODS as autorización } from '../midlewares/authorization.js';
 import cookieParser from 'cookie-parser';
+
+
 
 const app = express();
 app.set("port",4000)
@@ -24,5 +27,5 @@ console.log(__dirname)
 
 
 
-app.post('/login', autenticación.handleLogin);
-app.post('/register', autenticación.handleRegister);
+app.post('/login', autorización.onlyPublic,  autenticación.handleLogin);
+app.post('/register', autorización.onlyPublic, autenticación.handleRegister);
