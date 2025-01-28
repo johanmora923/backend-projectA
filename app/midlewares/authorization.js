@@ -24,7 +24,7 @@ function onlyPublic(req, res, next) {
 }
 
 async function revisarCookie(req){
-    const [users] = await pool.query('SELECT user,password FROM users');
+    const [users] = await pool.query('SELECT name,password FROM users');
     try{
         const cookieJWT = req.headers.cookie.split("; ").find(cookie=> cookie.startsWith("jwt=")).slice(4);
         const decodificada = Jsonwebtoken.verify(cookieJWT,process.env.JWT__SECRET)
