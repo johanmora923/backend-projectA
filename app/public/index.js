@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import cors from 'cors';
-import { handleLogin } from './routes/login.js';
+import { handleLogin } from './controllers/authentication.controllers.js';
 
 
 
@@ -24,4 +24,4 @@ console.log(__dirname)
 
 
 
-app.post('/login', handleLogin(req, res));
+app.post('/login',  handleLogin(req, res));
