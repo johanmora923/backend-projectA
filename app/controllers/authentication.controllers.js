@@ -2,6 +2,7 @@ import { createPool } from 'mysql2/promise';
 import bcryptjs from 'bcryptjs';
 import Jsonwebtoken from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import cors from 'cors';
 import { METHODS as autenticación } from '../controllers/authentication.controllers.js';
-
+import cookieParser from 'cookie-parser';
 
 const app = express();
 app.set("port",4000)
@@ -16,6 +16,7 @@ const corsOptions = {
     optionsSuccessStatus: 200
 }
 
+app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static(path.join(__dirname + '/pages')));
