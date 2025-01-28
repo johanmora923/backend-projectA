@@ -1,4 +1,4 @@
-import createPool from 'mysql2/promise';
+import { createPool } from 'mysql2/promise';
 
 const pool = createPool({
     host: 'bwvxcku5txdwk7meiayz-mysql.services.clever-cloud.com',
