@@ -1,5 +1,6 @@
 import { createPool } from 'mysql2/promise';
 
+try{
 const pool = createPool({
     host: 'bwvxcku5txdwk7meiayz-mysql.services.clever-cloud.com',
     user: 'u1xrecofby3ual5y',
@@ -8,7 +9,10 @@ const pool = createPool({
     connectionLimit: 5,
     port: 3306
 });
-
+}
+catch(error){
+    console.log('Error en la conexion a la base de datos', error);
+}   
 
 async function handleLogin(req, res) {
     try{
