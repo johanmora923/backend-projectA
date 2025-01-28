@@ -3,8 +3,8 @@
 async function handleLogin(req, res) {
     const { user, password } = req.body;
     const users = {
-        'user':johan,
-        'password':1234
+        user: 'johan',
+        password: 1234
     }
     if (!user || !password) {
         return res.status(400).send('User and password are required');
