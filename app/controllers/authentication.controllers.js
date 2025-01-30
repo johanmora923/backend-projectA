@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
 
-
 dotenv.config();
 
 let pool;
@@ -57,13 +56,12 @@ async function handleLogin( req, res ) {
                 expires: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
                 path: "/"
             }
-            console.log('inicio de sesion exitoso');
-            res.cookie('jwt',token,cookieOption);
-            return res.status(200).send({status:"ok",message:`Bienvenido ${userDB.name}`});
+            res.cookie("jwt",token,cookieOption);
+            res.send({status:"ok", message:"inicio de seccion satisfactorio",redirect:"/inicio"})
         }
     }
     catch(error){
-        console.log(1)
+        console.log(1,error)
         return res.status(500).send('Internal server error');  
     }
 }
