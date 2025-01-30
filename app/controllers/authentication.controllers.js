@@ -53,7 +53,7 @@ async function handleLogin( req, res ) {
             )
             console.log('aquiesta el peo2')
             const cookieOption = {
-                expires: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 100),
                 path: "/"
             }
             res.cookie("jwt",token,cookieOption);
