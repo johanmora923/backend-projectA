@@ -27,5 +27,5 @@ console.log(__dirname)
 
 
 
-app.post('/login',  autenticación.handleLogin);
+app.post('/login', autenticación.handleLogin, autorización.onlyPublic);
 app.post('/register', autorización.onlyPublic, autenticación.handleRegister);

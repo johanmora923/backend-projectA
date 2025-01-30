@@ -18,7 +18,7 @@ async function onlyAdmin(req, res, next) {
 async function onlyPublic(req, res, next) {
     const user = await revisarCookie(req);
     if (user && user.logueado) {
-        return res.redirect('/account'); // Redirige a una página específica si el usuario ya está logueado
+        return res.redirect('/inicio'); // Redirige a una página específica si el usuario ya está logueado
     }
     return next();
 }
