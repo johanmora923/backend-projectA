@@ -8,7 +8,7 @@ dotenv.config()
 
 async function onlyAdmin(req, res, next) {
     console.log(req.headers.cookie);
-    const user =await  revisarCookie(req);
+    const user = await  revisarCookie(req);
     if (user && user.logueado) {
         return next();
     }

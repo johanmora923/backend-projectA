@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname + '/pages')));
 console.log(__dirname)
 
 
-
-app.post('/', autenticación.handleLogin);
+console.log(3)
+app.post('/login', autenticación.handleLogin);
+console.log(2)
 app.post('/register', autenticación.handleRegister);

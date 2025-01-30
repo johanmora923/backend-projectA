@@ -39,7 +39,9 @@ async function handleLogin( req, res ) {
                 console.log('problema de inicio de sesion');
                 return res.status(401).send('incorect credentials');
             }
+
             const loginSuccessful = await bcryptjs.compare(password, userDB.password);
+
             if (!loginSuccessful) {
                 console.log('problema de inicio de sesion2');
                 return res.status(401).send('incorect credentials');
@@ -59,6 +61,7 @@ async function handleLogin( req, res ) {
         }
     }
     catch(error){
+        console.log(1)
         return res.status(500).send('Internal server error');  
     }
 }
