@@ -52,7 +52,7 @@ async function handleLogin( req, res ) {
                 {expiresIn:process.env.JWT__EXPIRATION}
             )
             const cookieOption = {
-                expired: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
+                expires: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
                 path: "/"
             }
             console.log('inicio de sesion exitoso');
