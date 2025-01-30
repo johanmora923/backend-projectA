@@ -46,11 +46,13 @@ async function handleLogin( req, res ) {
                 console.log('problema de inicio de sesion2');
                 return res.status(401).send('incorect credentials');
             }
+            console.log('aquiesta el peo')
             const token = Jsonwebtoken.sign(
                 {user: userDB.name},
                 process.env.JWT__SECRET,
                 {expiresIn:process.env.JWT__EXPIRATION}
             )
+            console.log('aquiesta el peo2')
             const cookieOption = {
                 expires: new Date(Date.now() + process.env.JWT__COOKIE__PROCESS * 24 * 60 * 60 * 100),
                 path: "/"
