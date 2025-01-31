@@ -60,7 +60,7 @@ async function handleLogin( req, res ) {
             res.send({status:"ok", message:"inicio de seccion satisfactorio",redirect:"/inicio"})
         }
     }
-    catch(error){
+    catch(error){  
         console.log(1,error)
         return res.status(500).send('Internal server error');  
     }
