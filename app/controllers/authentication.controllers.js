@@ -58,7 +58,8 @@ async function handleLogin( req, res ) {
             }
             res.cookie("jwt",token,cookieOption);
             window.localStorage.setItem('idUserLogin', userDB.id)
-            res.send({status:"ok", message:"inicio de seccion satisfactorio",redirect:"/inicio"})
+            res.send({status:"ok", message:"inicio de seccion satisfactorio", id:userDB.id})
+            console.log('login suscefull')
         }
     }
     catch(error){  
