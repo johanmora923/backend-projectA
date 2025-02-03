@@ -86,7 +86,7 @@ async function handleRegister( req, res) {
         }
     }
     catch(error){
-        return res.status(500).send('Internal server error');
+        return res.status(500).send('Internal server error',error);
     }
 }   
 
