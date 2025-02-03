@@ -56,8 +56,9 @@ async function handleLogin( req, res ) {
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 100),
                 path: "/"
             }
+            const id = JSON.stringify(userDB.id)
             res.cookie("jwt",token,cookieOption);
-            res.send({status:"ok", message:"inicio de seccion satisfactorio", id:userDB.id})
+            res.send({status:"ok", message:"inicio de seccion satisfactorio", id:id})
             console.log('login suscefull')
         }
     }
