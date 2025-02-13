@@ -74,11 +74,13 @@ async function handleRegister( req, res) {
         return res.status(400).send('User, password and email are required');
     }
     try {
+        console.log('aqui')
         const [ users ] = await pool.query('SELECT * FROM users');
         for (let userDB of users) {
             if (user === userDB.name || email === userDB.email) {
                 return res.status(400).send('User or email already exists');
             }
+            console.log('aqui2')
             const salt = await bcryptjs.genSalt(5);
             const hashPassword = await bcryptjs.hash(password,salt);
             const insert = "INSERT INTO users (name,password,email) VALUES ('"+user+"','"+hashPassword+"','"+email+"')";
@@ -88,7 +90,7 @@ async function handleRegister( req, res) {
     }
     catch(error){
         console.error(error)
-        return res.status(500).send('Internal server error');
+        return res.status(500).send('Internal server error 2');
     }
 }   
 
