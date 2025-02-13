@@ -78,7 +78,7 @@ async function handleRegister( req, res) {
         const [ users ] = await pool.query('SELECT * FROM users');
         console.log(users)
         for (let userDB of users) {
-            if (user === userDB.name || email === userDB.email) {
+            if (userDB.name & user === userDB.name || userDB.email & email === userDB.email) {
                 return res.status(400).send('User or email already exists');
             }
             console.log('aqui2')
