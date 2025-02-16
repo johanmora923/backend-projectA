@@ -57,7 +57,7 @@ async function handleLogin( req, res ) {
                 path: "/"
             }
             const id = userDB.id.toString()
-            const email = user.DB.email.toString()
+            const email = userDB.email.toString()
             res.cookie("jwt",token,cookieOption);
             res.send({status:"ok", message:"inicio de seccion satisfactorio", id: id, email: email })
             console.log('login suscefull')
