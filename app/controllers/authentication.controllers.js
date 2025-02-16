@@ -31,7 +31,7 @@ async function handleLogin( req, res ) {
         return res.status(400).send('User and password are required');
     }
     try{
-        const [ users ] = await pool.query('SELECT id,name,password FROM users WHERE name = ?', [user]);
+        const [ users ] = await pool.query('SELECT id,name,password,email FROM users WHERE name = ?', [user]);
         for (let userDB of users) {
             console.log(userDB);
             if (user !== userDB.name) {
@@ -57,8 +57,9 @@ async function handleLogin( req, res ) {
                 path: "/"
             }
             const id = userDB.id.toString()
+            const email = user.DB.email.toString()
             res.cookie("jwt",token,cookieOption);
-            res.send({status:"ok", message:"inicio de seccion satisfactorio", id: id })
+            res.send({status:"ok", message:"inicio de seccion satisfactorio", id: id, email: email })
             console.log('login suscefull')
         }
     }
