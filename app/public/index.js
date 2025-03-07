@@ -15,7 +15,7 @@ app.listen(app.get("port"))
 console.log("Server on port", app.get("port"));
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: '*',
     optionsSuccessStatus: 200
 }
 
