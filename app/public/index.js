@@ -15,7 +15,7 @@ app.listen(app.get("port"))
 console.log("Server on port", app.get("port"));
 
 const corsOptions = {
-    origin: '*',
+    origin: '["https://aution.vercel.app", "http://localhost:5173"]',
     optionsSuccessStatus: 200
 }
 
